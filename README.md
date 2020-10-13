@@ -47,3 +47,14 @@ Game Procedures:
 9.  Players can save the progress at any given point in time.
 
 10. Different players can compare the performance among them on a leaderboard, sorted according to the amount of remaining capital they have.
+
+List of Features
+1.  Randomness: All stock or commodity prices are random and would have different volatilities. All financial news and life events will also pop up randomly.
+
+2.  Data Structures: Arrays, booleans, integer, double, char will be used depending on needs. Moreover, different files will be used to save player’s data.
+
+3.  Dynamic memory management: The number of variables would be minimized, and if possible, store them onto a csv file for later usage instead of declaring and not using it.
+
+4.  File input/output: Different profiles can be opened at wish. A text file is used to store the progress of a particular profile. A trade log is also available for viewing in case the user wishes to do so.
+
+5.  Functions will be separated into different files for better understanding and allow simultaneous collaboration. Moreover, a “Makefile” file will be included for better and more effective compilation .
