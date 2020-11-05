@@ -57,4 +57,4 @@ List of Features
 
 4.  File input/output: Different profiles can be opened at wish. A text file is used to store the progress of a particular profile. A trade log is also available for viewing in case the user wishes to do so.
 
-5.  Functions will be separated into different files for better understanding and allow simultaneous collaboration. Moreover, a “Makefile” file will be included for better and more effective compilation .
+5.  Functions will be separated into different files for better understanding and allow simultaneous collaboration. Moreover, a “Makefile” file will be included for better and more effective compilation.
