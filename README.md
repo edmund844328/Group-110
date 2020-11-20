@@ -20,11 +20,11 @@ Game Setting:
 
 2.  Each new account comes with an initial capital of USD10,000.
 
-3.  There will be ten U.S. company stocks (FB, AAPL, AMZN, NFLX, GOOG, AAL, QCOM, MMM, JPM, WMT) and 4 commodities (Bitcoin, HKD, Gold, Crude Oil) available for trading.
+3.  There will be five U.S. company stocks (FB, TSLA, AMZN, GOOG, AAPL), 4 H.K. stocks (Tencent: 0700, HKEX: 0388, Alibaba 9988 and HSBC Holdings plc: 0005) and two forex pairs (USD/EUR AND USD/GBP) available for trading.
 
 4.  User date (name, age, remaining capital) will be saved into a file after each trading week.
 
-5.  For every 4 weeks, the player will receive a monthly salary of USD 2,000, which will increase, decrease or remain unchanged depending on some random events.
+5.  For every 4 weeks, the player will receive a monthly salary of USD 1,000.
 
 Game Procedures:
 
@@ -34,11 +34,11 @@ Game Procedures:
 
 3.  For each session, stocks or commodities will be evaluated at a different price, depending on financial news, volatility of individual stocks or commodities.
 
-4.  For every 4 weeks, the player will receive a monthly salary of USD 2,000, which will increase, decrease or remain unchanged depending on some random event (like     getting promoted or fired).
+4.  For every 4 weeks, the player will receive a monthly salary of USD 1,000.
 
 5.  Players can trade on different stocks during each session. Players would trigger and end a session when they have completed all their desired trades.
 
-6.  There will be some random life-events popping up during the course of the game (such as the need of buying a car, going on a vacation, getting into the hospital). For those events, they cost money and will deduct a certain amount of money from the account.
+6.  There will be some random life-events popping up during the course of the game (such as  buying a new car, going on a vacation, getting into the hospital). For those events, they cost money and will deduct a certain amount of money from the account.
 
 7.  The emergence of random life-events will be terminated if the player’s capital drops below a certain threshold, meaning the game will not deduct capital from the account until the player accumulates capital back to the threshold level. 
 
@@ -46,14 +46,13 @@ Game Procedures:
 
 9.  Players can save the progress at any given point in time.
 
-10. Different players can compare the performance among them on a leaderboard, sorted according to the amount of remaining capital they have.
+List of Features:
 
-List of Features
-1.  Randomness: All stock or commodity prices are random and would have different volatilities. All financial news and life events will also pop up randomly.
+1.  Randomness: All stock or commodity prices are random and would have different volatilities using normal and uniform disdribution function. All financial news and life events will also pop up randomly.
 
 2.  Data Structures: Arrays, booleans, integer, double, char will be used depending on needs. Moreover, different files will be used to save player’s data.
 
-3.  Dynamic memory management: The number of variables would be minimized, and if possible, store them onto a csv file for later usage instead of declaring and not using it.
+3.  Dynamic memory management: memory management fucntions such as vector will be used to store data
 
 4.  File input/output: Different profiles can be opened at wish. A text file is used to store the progress of a particular profile. A trade log is also available for viewing in case the user wishes to do so.
 
