@@ -39,6 +39,10 @@ struct portfolio {
 	}
 };
 
+//A basic structure of a financial news
+//with message as a string
+//and the affected stocks
+//and the override mean and sd after the news has been exposed
 struct financial_news
 {
 	std::string message;
