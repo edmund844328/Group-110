@@ -10,11 +10,10 @@ using namespace std;
 
 map<string, int> stock_to_index;
 map<int, string> index_to_stock;
-
+//bi-directional index-stock mapping
+//Each stock is assigned with an integer
+//this is for easier programming at later stages
 void stock_index_mapping() {
-	//bi-directional index-stock mapping
-	//Each stock is assigned with an integer
-	//this is for easier programming at later stages
 	stock_to_index["FB"] = 0;
 	stock_to_index["TSLA"] = 1;
 	stock_to_index["AMZN"] = 2;
@@ -42,6 +41,8 @@ void stock_index_mapping() {
 
 map<int, double> default_mean;
 map<int, double> default_sd;
+//getting the mean and SD of different stocks.
+//from 0-10, representing the 11 different stocks
 void stock_mean_sd() {
 	//FB
 	default_mean[0] = 0.01;
@@ -80,6 +81,9 @@ void stock_mean_sd() {
 
 //News that would affect stock prices
 financial_news news[15];
+//get the news that would affect the SD and mean
+//override_mean is the new mean that would be used for
+//the next iteration of stock prices
 void load_financial_news()
 {
 	news[0].message = "US government is planning on loosening its regulations on tech companies, in response to the lobbying 3 months ago.";
@@ -192,6 +196,13 @@ int draw_financial_news(bool appearedNews[])
 	}
 }
 
+//Check whether a order is valid by inputing the action details
+//as well as current account status
+//return an integer that represent different clearence/error
+//0: No error
+//1: Not enough cash to buy
+//2: Not enough stocks to sell
+//3: Wrong stock code
 int order_is_valid(portfolio account, string action, string targetstock, int number_of_shares) {
 
 	//Change User inputs to Capital Letters
@@ -224,6 +235,9 @@ int order_is_valid(portfolio account, string action, string targetstock, int num
 	return 0;
 }
 
+//To execute an order by changing the account and obtaining actions
+//of the order
+//output a message to indicate the success of buying/selling
 void execute_order(portfolio& account, string action, string targetstock, int number_of_shares) {
 	//Change User inputs to Capital Letters
 	transform(targetstock.begin(), targetstock.end(), targetstock.begin(), ::toupper);
@@ -244,6 +258,15 @@ void execute_order(portfolio& account, string action, string targetstock, int nu
 	}
 }
 
+
+//To end the current week:
+//Inputs: the account, the news that is currently hoisting, the news that have been shown
+//1. To update stock prices
+//	If the news from the previous week affect the stock
+//	The stock will be randomized by the override mean and SD
+//	Otherwise it will be randomized by the default parameters
+//2. To draw another news for the next week
+//3. To progress the date by 7 days
 void end_current_week(portfolio& account, int& activeNews, bool appearedNews[])
 {
 	//To update the stock prices
@@ -353,14 +376,21 @@ void end_current_week(portfolio& account, int& activeNews, bool appearedNews[])
 
 }
 
-string double_to_string(double number, int precision) {	//convert a double precision number into a string
+//convert a double precision number into a string
+//For instance, input = (23.12345,3)
+//Output = string of 23.123
+string double_to_string(double number, int precision) {
 
 	stringstream stream;
 	stream << fixed << setprecision(precision) << number;
 	return (stream.str());
 }
 
-string fixed_length_display(string input, int totalDigitsOfOutput) { //Function to limit the output length of a string
+//Function to limit the output length of a string
+//For instance, input = ("23.123",9)
+//Output = string of "  23.123  ", in total there would be 9 characters in this string
+//with the target string placed in the middle, surrounded by blanks
+string fixed_length_display(string input, int totalDigitsOfOutput) {
 
 	int stringBeginPosition;
 	string temp_string = "";
@@ -376,7 +406,9 @@ string fixed_length_display(string input, int totalDigitsOfOutput) { //Function 
 	return temp_string;
 }
 
-void display_stock_prices(portfolio account) //Function for displaying the stock prices in a graphical manner
+//Function for displaying the stock prices in a graphical manner
+//requiring the account details
+void display_stock_prices(portfolio account)
 {
 	cout << endl;
 	cout << setw(50) << " " << setw(24) << " " << "Date: " << account.day << "/" << account.month << "/" << account.year << endl;
