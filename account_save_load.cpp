@@ -11,7 +11,10 @@
 
 using namespace std;
 
-int account_list_checker(string input_name) { //To prevent fileoverwriting during file creation
+//To prevent fileoverwriting during file creation
+//The input is a name that is inputed by the player
+//The output is 0 if the account name exist in the account_list.txt, else 1
+int account_list_checker(string input_name) {
 	ifstream fin;
 	fin.open("account_list.txt");
 	if (fin.fail()) {
@@ -21,22 +24,25 @@ int account_list_checker(string input_name) { //To prevent fileoverwriting durin
 	string temp_accout_name_container;
 	while (fin >> temp_accout_name_container) {
 		if (input_name == temp_accout_name_container) {
-			return 0; //Return 0 if the account name exist in the account_list.txt, else 1
+			return 0;
 		}
 	}
 	fin.close();
 	return 1;
 }
 
-void account_list(string input_name) { //Append the name of the newly created account file into an account_list
+//To append the name of the newly created account file into an account_list
+//The input is a name that is inputed by the player
+//Void function no output
+void account_list(string input_name) {
 	ifstream fin;
 	fin.open("account_list.txt");
 	if (fin.fail()) {
 		cout << "Error in account_list.txt opening !" << endl;
 		exit(1);
 	}
-	string temp_account_name_container; //To check whether or not to add the filename into the account_list.txt or not
-	bool add_or_not = true;
+	string temp_account_name_container; //To check whether or not to add the player name into the account_list.txt
+	bool add_or_not = true;		    //If the player name exist in the account_list.txt, the function will not add it, else add
 	while (fin >> temp_account_name_container) {
 		if (input_name == temp_account_name_container) {
 			add_or_not = false;
@@ -55,7 +61,10 @@ void account_list(string input_name) { //Append the name of the newly created ac
 	fin.close();
 }
 
-void save_game_status(portfolio account) { //Update the players date by overwriting the their _account.txt file
+//To update the players date by overwriting the their (Player name)_account.txt file
+//The input is the variable portfolio, which is defined in variable_structs.h
+//Void function no output
+void save_game_status(portfolio account) {
 	string username = account.name;
 	string file_name = username + "_account.txt";
 	ofstream fout;
@@ -80,7 +89,10 @@ void save_game_status(portfolio account) { //Update the players date by overwrit
 	fout.close();
 }
 
-void create_portfolio(string input_name) { //Creating a new account
+//To creating a new account for the player and initialize their player status
+//The input is a name that is inputed by the player
+//Void function no output
+void create_portfolio(string input_name) {
 	portfolio account;
 	account.initialize_portfolio(); //Calling the function to initialize the portfolio
 	account.name = input_name;
@@ -106,11 +118,14 @@ void create_portfolio(string input_name) { //Creating a new account
 	}
 	cout << endl;
 	fout.close();
-
-
 }
 
-int print_check_avalible_account_list() { //Printing all the avalible account
+
+//To printing all the avalible account for player to choose
+//The function will print out a list of the avaliable account if there exist 1 or more account in the account_list.txt, else nothing is printed and 0 is returned
+//No input needed
+//The output is 0 if the account_list.txt is empty, else 1
+int print_check_avalible_account_list() {
 	ifstream fin;
 	fin.open("account_list.txt");
 	if (fin.fail()) {
@@ -119,7 +134,7 @@ int print_check_avalible_account_list() { //Printing all the avalible account
 	}
 	string empty_checker;
 	fin >> empty_checker;
-	if (empty_checker.length() == 0) { //To check whether the list is empty or not, return 0 if empty, else 1
+	if (empty_checker.length() == 0) {
 		return 0;
 	}
 	else {
@@ -134,7 +149,9 @@ int print_check_avalible_account_list() { //Printing all the avalible account
 	fin.close();
 }
 
-int account_access(string account_name, portfolio& return_account) { //Extract the data from the .txt file and place it into the vector
+//To extract the data from the .txt file and place it into the vector
+//One input is the name of the account that the player have choosen when the game start.
+int account_access(string account_name, portfolio& return_account) {
 	string file_name = account_name + "_account.txt"; //Combin the make a string of file name to access
 	ifstream fin;
 	fin.open(file_name);
