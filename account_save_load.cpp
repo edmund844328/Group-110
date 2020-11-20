@@ -149,8 +149,10 @@ int print_check_avalible_account_list() {
 	fin.close();
 }
 
-//To extract the data from the .txt file and place it into the vector
+//To extract the data from the (player)_account.txt file, place it into the vector and assign it into the variable portfolio return_account with order
 //One input is the name of the account that the player have choosen when the game start.
+//Another input is the return_account, this is a variable portfolio, which is passed from main(), the function will assign data into this variable portfolio so that player can retrive their account
+//The output of the function is 0 when the account that the player chose does not exist, else 1
 int account_access(string account_name, portfolio& return_account) {
 	string file_name = account_name + "_account.txt"; //Combin the make a string of file name to access
 	ifstream fin;
@@ -164,28 +166,30 @@ int account_access(string account_name, portfolio& return_account) {
 	while (getline(fin, temp_profile_data_container)) { //Extract all the line from the file
 		loadedgames.push_back(temp_profile_data_container); //Store all line of date into the vector
 	}
-
+	
 	fin.close();
-	portfolio account_to_be_returned;
 	istringstream iss(loadedgames[0]);
-
+	
 	//Store all the data into the portfolio according to their type
-	iss >> account_to_be_returned.name >> account_to_be_returned.day >> account_to_be_returned.month
-		>> account_to_be_returned.year >> account_to_be_returned.cash
-		>> account_to_be_returned.portfolio_value;
+	iss >> return_account.name >> return_account.day >> return_account.month 
+		>> return_account.year >> return_account.cash
+		>> return_account.portfolio_value;
 	for (int i = 0; i < 11; i++) {
-		iss >> account_to_be_returned.price[i];
+		iss >> return_account.price[i];
 	}
 	for (int i = 0; i < 11; i++) {
-		iss >> account_to_be_returned.shares[i];
+		iss >> return_account.shares[i];
 	}
 	for (int i = 0; i < 11; i++) {
-		iss >> account_to_be_returned.percentchange[i];
+		iss >> return_account.percentchange[i];
 	}
-	return_account = account_to_be_returned;
+	return_account = return_account;
 	return 1;
 }
 
+//To delete the (player)_account.txt file and also remove their name from the account_list.txt
+//The input is the name of the account (string) that the player wants to delete
+//The output of the function is 0 if the account that the player chose does not exist, else 1
 int delete_account(string account_name) { //For deleting an account
 	string file_name = account_name + "_account.txt";
 	int n = file_name.length();
