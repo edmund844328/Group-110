@@ -13,6 +13,7 @@
 using namespace std;
 
 int main() {
+	//print the welcome message
 	game_starting_art();
 	srand(time(NULL));
 	cout << endl;
@@ -32,8 +33,8 @@ int main() {
 	while (true) { //Loop for chosing create account or accessing an existing account (file I/O loop)
 		int choice = main_choice_vaild_checker(choice_checker); //For debugging, check the input is 1 or 0
 /*________________________________________________________________________________________________________________________________________________*/
-
-		if (choice == 0) {
+	
+		if (choice == 0) {  //if create new profile
 			cout << "(Non-case-sensitive) To create a new profile, please enter a name of the profile: ";
 			string input_name;
 			cin >> input_name;
@@ -51,7 +52,7 @@ int main() {
 		}
 /*________________________________________________________________________________________________________________________________________________*/
 
-		if (choice == 1) {
+		if (choice == 1) {  //if load existing profiles
 			int account_existence_checker; //To check whether there exist at least one account
 			account_existence_checker = print_check_avalible_account_list();
 			if (account_existence_checker == 1) {
@@ -76,7 +77,7 @@ int main() {
 
 /*________________________________________________________________________________________________________________________________________________*/
 
-		if (choice == 2) {
+		if (choice == 2) {  //if delete profile
 			int account_existence_checker; //To check whether there exist at least one account
 			account_existence_checker = print_check_avalible_account_list();
 			if (account_existence_checker == 1) {
@@ -101,7 +102,7 @@ int main() {
 		}
 /*________________________________________________________________________________________________________________________________________________*/
 
-		if (choice == 3) {
+		if (choice == 3) {  //if quit the game
 			exit(1);
 		}
 		if (choice == 69) { //hack code ??
@@ -116,10 +117,14 @@ int main() {
 		cin >> choice_checker;
 	} //
 /*________________________________________________________________________________________________________________________________________________*/
-
+	
+	//get the stocks-index mapping
+	//and the news and standard parameters of randomized movements
 	stock_index_mapping();
 	stock_mean_sd();
 	load_financial_news();
+	
+	//display the account info
 	display_stock_prices(account);
 
 /*________________________________________________________________________________________________________________________________________________*/
@@ -127,12 +132,13 @@ int main() {
 	string targetstock; //For storing stocks symbol options
 	string number_of_shares;
 	int activeNews = -1;	//For choosing which news event to be on hoist
-	bool existedNews[15];
-	int validation;
-
+	bool existedNews[15];	//For storing which news have been shown already, and won't be shown again
+	int validation;		//Validating the order
+	
+	//initialize existedNews all to false
 	for (int i = 0; i < 15; i++)
 		existedNews[i] = false;
-
+	
 	while (true) {
 		cout << "B - Buy, S - Sell, E - End Week, Q - Quit and save." << endl;
 		cout << " E.g. \"b aapl 23\" = buy 23 stocks of AAPL. Non-case-sensitive" << endl;
@@ -143,7 +149,7 @@ int main() {
 		cout << "_____________________________________________________________________________________________________________________________________________________________" << endl;
 
 /*________________________________________________________________________________________________________________________________________________*/
-		if (action == "B" || action == "b") {
+		if (action == "B" || action == "b") {  //if buy
 			//validate the order
 			cin >> targetstock >> number_of_shares; //read the target stocks and the number of shares that the user is wanting to buy
 			int shares_checker = main_integer_checker(number_of_shares);
@@ -168,7 +174,7 @@ int main() {
 			}
 		}
 /*________________________________________________________________________________________________________________________________________________*/
-		else if (action == "S" || action == "s") {
+		else if (action == "S" || action == "s") {  //if sell
 			cin >> targetstock >> number_of_shares; //read the target stocks and the number of shares that the user is wanting to buy
 			int shares_checker = main_integer_checker(number_of_shares);
 			if (shares_checker != -1) { //excute if the player enters an interger as the number_of_shares
@@ -194,7 +200,7 @@ int main() {
 			}
 /*________________________________________________________________________________________________________________________________________________*/
 		}
-		else if (action == "E" || action == "e") {
+		else if (action == "E" || action == "e") {  //if end the current week
 			cout << "End Week!" << endl;
 			end_current_week(account, activeNews, existedNews);
 
@@ -208,7 +214,7 @@ int main() {
 
 			display_stock_prices(account);
 		}
-		else if (action == "Q" || action == "q") {
+		else if (action == "Q" || action == "q") {  //if quit the game
 			save_game_status(account);
 			break;
 		}
