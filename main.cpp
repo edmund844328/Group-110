@@ -15,7 +15,7 @@ using namespace std;
 int main() {
 	//print the welcome message
 	game_starting_art();
-	srand(time(NULL));
+	srand(time(NULL)); //seed for random life event
 	cout << endl;
 	cout << "Welcome to \"Life of A Trader\"! ";
 	cout << "This is a trading simulating game that incorporates life events" << endl;
