@@ -20,7 +20,7 @@ Game Setting:
 
 2.  Each new account comes with an initial capital of USD10,000.
 
-3.  There will be five U.S. company stocks (FB, TSLA, AMZN, GOOG, AAPL), 4 H.K. stocks (Tencent: 0700, HKEX: 0388, Alibaba 9988 and HSBC Holdings plc: 0005) and two forex pairs (USD/EUR And USD/GBP) available for trading.
+3.  There will be five U.S. company stocks (FB, TSLA, AMZN, GOOG, AAPL), 4 H.K. stocks (Tencent: 0700, HKEX: 0388, Alibaba 9988 and HSBC Holdings plc: 0005) and two forex pairs (USD/EUR and USD/GBP) available for trading.
 
 4.  User date (name, age, remaining capital...etc) will be saved into a file when the player choose to save-game and quit.
 
